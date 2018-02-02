@@ -39,9 +39,12 @@ document.addEventListener("DOMContentLoaded", function() {
             'name': this.querySelector('input[type=hidden]').value
           }
         });
+        console.log('Voted');
+        window.location.reload()
       });
-
     }
+  }).fail(function(e) {
+    console.log('You gone messed up son.');
   });
 });
 
