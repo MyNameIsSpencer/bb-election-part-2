@@ -10,12 +10,22 @@ document.addEventListener("DOMContentLoaded", function() {
     for (var i = 0; i < data.candidates.length; i ++) {
       var litem = document.createElement('li')
       var candi = data.candidates[i]
-      var form = document.createElement('form');
-      var submitButt = document.createElement('button');
-      var invisible = document.createElement('input');
 
+      var form = document.createElement('form');
       form.method = 'POST';
-      form.action="https://bb-election-api.herokuapp.com/vote";
+      form.action = "https://bb-election-api.herokuapp.com/vote";
+
+      var submitter = document.createElement('button');
+      submitter.setAttribute('type', 'submit')
+      form.append(submitter)
+      submitter.innerText = "Vote for " + candi.name
+
+      var invisible = document.createElement('input');
+      invisible.setAttribute('hidden', 'true');
+      invisible.setAttribute('name', 'name');
+      invisible.value = candi.name;
+      form.append(invisible);
+
       litem.innerHTML = candi.name + ' Votes: ' + candi.votes
       litem.append(form);
       candidate.append(litem)
