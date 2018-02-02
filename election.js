@@ -8,13 +8,18 @@ document.addEventListener("DOMContentLoaded", function() {
     datatype: 'JSON',
   }).done(function(data){
     for (var i = 0; i < data.candidates.length; i ++) {
-      var litem = document.createElement('li');
-      var candi = data.candidates[i];
-      var form = data.createElement('form');
-      var submitButt = data.createElement('button');
-      var invisible = data.createElement('input');
-      litem.innerHTML = candi.name + ' Votes: ' + candi.votes;
-      candidate.append(litem);
+      var litem = document.createElement('li')
+      var candi = data.candidates[i]
+      var form = document.createElement('form');
+      var submitButt = document.createElement('button');
+      var invisible = document.createElement('input');
+
+      form.method = 'POST';
+      form.action="https://bb-election-api.herokuapp.com/vote";
+      litem.innerHTML = candi.name + ' Votes: ' + candi.votes
+      litem.append(form);
+      candidate.append(litem)
+
     }
   });
 });
